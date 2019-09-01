@@ -10,7 +10,11 @@
         readFile = (way, type) => {
             return new Promise((res, rej) =>
                 fs.readFile(way, type, (err, content) => {
-                    return err ? rej(err) : res(content);
+                    if (err !== true) {
+                        res(content)
+                    } else {
+                        rej('Ошибка...')
+                    }
                 }),
                 // console.log(contents);
             )
